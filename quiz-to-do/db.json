@@ -1,0 +1,17 @@
+{
+  "tareas": [],
+  "users": [
+    {
+      "id": "1b21",
+      "nombre": "allan",
+      "email": "velezalan34@gmail.com",
+      "password": "lsdisfun"
+    },
+    {
+      "id": "5262",
+      "nombre": "barry",
+      "email": "barry@fwd.com",
+      "password": "123"
+    }
+  ]
+}
