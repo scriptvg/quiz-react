@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
-import Swal from 'sweetalert2'
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../services/Auth'
 import usersCalls from '../services/usersCalls'
+import Swal from 'sweetalert2'
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/CardLogin.css"
 
 
 
 function CardLogin() {
 
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [emailUser, setEmailUser] = useState("");
   const [passwordUser, setPasswordUser] = useState("");
   const [users, setUsers] = useState([]);
@@ -33,9 +37,6 @@ function password(event) {
 }
 
 function ingresar() {
-    console.log(emailUser, passwordUser);
-    console.log(users);
-
     const user = users.find(user => user.email === emailUser && user.password === passwordUser);
 
     if (!user)  {
@@ -45,15 +46,24 @@ function ingresar() {
         text: 'User not found!',
         });
         return;
-    } else {
-        Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'User found!',
-        }).then(() => {
-        window.location.href = '/';
-        });
+    } 
+
+    const userData = {
+      id: user.id,
+      nombre: user.nombre,
+      email: user.email,
+      password: user.password,
+      isAutenticated: true,
     }
+    login(userData);
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Éxito',
+      text: 'Ingresaste correctamente',
+    }).then(() => {
+      navigate("/");
+    });
 
 }
 

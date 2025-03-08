@@ -1,20 +1,29 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-import Inicio from '../pages/Inicio';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
+import Inicio from '../pages/inicio';
+import Login from '../pages/login';
+import Register from '../pages/register';
+import { AuthProvider } from '../services/Auth'
+import ProtectedRoute from '../components/ProtectedRoute'
 
 function Routing() {
   return (
-    <div>
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Inicio />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route 
+            path="/" 
+            element={
+              <ProtectedRoute>
+                <Inicio />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </BrowserRouter>
-    </div>
+    </AuthProvider>
   )
 }
 
