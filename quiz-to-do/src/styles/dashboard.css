@@ -1,0 +1,467 @@
+/* Dashboard Container */
+:root {
+  --pattern-size: 194px;
+  --pattern-color-1: #f6edb3;
+  --pattern-color-2: #acc4a3;
+  --pattern-color-3: #55897c;
+  --pattern-layer: #0000 calc(25%/3),var(--pattern-color-1) 0 25%,#0000 0;
+  --pattern-gradient: conic-gradient(from 120deg at 50% 87.5%,var(--pattern-color-1) 120deg,#0000 0);
+  
+  --geometric-pattern: 
+    var(--pattern-gradient),
+    var(--pattern-gradient) 0 calc(var(--pattern-size)/2),
+    conic-gradient(from 180deg at 75%,var(--pattern-color-2) 60deg,#0000 0),
+    conic-gradient(from 60deg at 75% 75%,var(--pattern-color-1) 0 60deg,#0000 0),
+    linear-gradient(150deg,var(--pattern-layer)) 0 calc(var(--pattern-size)/2),
+    conic-gradient(at 25% 25%,#0000 50%,var(--pattern-color-2) 0 240deg,var(--pattern-color-1) 0 300deg,var(--pattern-color-2) 0),
+    linear-gradient(-150deg,var(--pattern-layer)) var(--pattern-color-3);
+}
+
+/* Update body to use the pattern */
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  background: var(--geometric-pattern);
+  background-size: calc(0.866*var(--pattern-size)) var(--pattern-size);
+}
+
+.container {
+  margin-left: 140px;
+}
+
+/* Welcome Section */
+.welcome-section {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.welcome-section h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+.welcome-section .d-flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcome-section .text-primary {
+  color: #4e73df !important;
+}
+
+@media (max-width: 768px) {
+  .welcome-section {
+    padding: 1.5rem;
+  }
+  
+  .welcome-section h1 {
+    font-size: 1.5rem;
+  }
+  
+  .welcome-section .d-flex {
+    gap: 0.75rem;
+  }
+}
+
+.welcome-section .d-flw {
+  font-size: 1.2em;
+  color: #6c757d;
+  margin-bottom: 3rem;
+}
+
+/* Cards */
+.card {
+  transition: all 0.3s ease;
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Card Headers */
+.card-header {
+  border-bottom: none;
+  padding: 1.5rem;
+}
+
+.bg-primary.bg-gradient {
+  background: linear-gradient(45deg, #4e73df 0%, #224abe 100%) !important;
+}
+
+.bg-warning.bg-gradient {
+  background: linear-gradient(45deg, #f6c23e 0%, #f4b619 100%) !important;
+}
+
+.bg-success.bg-gradient {
+  background: linear-gradient(45deg, #1cc88a 0%, #13855c 100%) !important;
+}
+
+/* Task Form Card */
+.task-form-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .min-vh-100.bg-light {
+    padding: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem;
+  }
+
+  .row.g-4 {
+    margin: 0 -0.5rem;
+  }
+
+  .col-md-4 {
+    padding: 0 0.5rem;
+  }
+
+  .welcome-section h1 {
+    font-size: 2rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Enhanced Animations */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(78, 115, 223, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(78, 115, 223, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(78, 115, 223, 0);
+  }
+}
+
+/* Apply animations to components */
+.welcome-section {
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.task-stats-card {
+  animation: slideInFromRight 0.8s ease-out;
+}
+
+.task-form-card {
+  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.task-card {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.task-card:hover {
+  animation: pulseGlow 1.5s infinite;
+}
+
+/* Staggered animations for task lists */
+.task-list-column:nth-child(1) {
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+.task-list-column:nth-child(2) {
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.task-list-column:nth-child(3) {
+  animation: slideInFromLeft 1s ease-out;
+}
+
+/* Button hover animations */
+.btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Card hover effects */
+.card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Task completion animation */
+.completed-task {
+  transition: all 0.5s ease;
+  animation: fadeOut 0.5s ease-out;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+/* Loading animation */
+.loading-spinner {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Badge animations */
+.badge {
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+}
+
+/* Priority indicator pulse */
+.priority-high {
+  animation: priorityPulse 2s infinite;
+}
+
+@keyframes priorityPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+  border: 2px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+eckbox
+.task-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  opacity: 1 !important;
+}
+
+.completed-task {
+  background-color: rgba(248, 249, 250, 0.5);
+}
+
+.completed-task .task-badge {
+  opacity: 0.9 !important;
+}
+
+.task-card {
+  margin-bottom: 1rem;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
+
+.cursor-move {
+  cursor: move;
+}
+
+.badge {
+  font-weight: 500;
+}
+
+.card-body {
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+  scrollbar-width: thin;
+}
+
+.card-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.completed-task {
+  background-color: rgba(248, 249, 250, 0.7);
+}
+
+.completed-text {
+  color: #6c757d;
+  position: relative;
+}
+
+.completed-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: #6c757d;
+  opacity: 0.5;
+}
+
+.task-card .badge {
+  opacity: 1 !important;
+}
+
+/* Add these styles */
+.task-overdue {
+  border-left: 4px solid #dc3545 !important;
+}
+
+.task-due-soon {
+  border-left: 4px solid #ffc107 !important;
+}
+
+.task-badge.overdue {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+.task-badge.due-soon {
+  background-color: #ffc107 !important;
+  color: black !important;
+}
+
+/* Profile Styles */
+.profile-form .form-control {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.profile-form .form-control:focus {
+  border-color: var(--pattern-color-2);
+  box-shadow: 0 0 0 0.2rem rgba(172, 196, 163, 0.25);
+}
+
+.profile-form .form-label {
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.profile-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.profile-form .btn {
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.profile-form .btn:hover {
+  transform: translateY(-2px);
+}

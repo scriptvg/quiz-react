@@ -1,3 +1,15 @@
+html {
+  --s: 104px; /* control the size*/
+  --c1: #d3643b;
+  --c2: #333333;
+  
+  --c:var(--c2) 20% 30%;
+  background:
+    linear-gradient(135deg,#0000 20%,var(--c),#0000 0),
+    repeating-linear-gradient(45deg,var(--c),var(--c1) 0 70%);
+  background-size: var(--s) var(--s);
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

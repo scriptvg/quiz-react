@@ -1,5 +1,4 @@
 {
-  "tareas": [],
   "users": [
     {
       "id": "1b21",
@@ -8,10 +7,29 @@
       "password": "lsdisfun"
     },
     {
-      "id": "5262",
       "nombre": "barry",
       "email": "barry@fwd.com",
+      "password": "1234",
+      "id": "5262"
+    },
+    {
+      "id": "e481",
+      "nombre": "hany",
+      "email": "hany@hany.com",
       "password": "123"
+    }
+  ],
+  "tareas": [
+    {
+      "id": "2130",
+      "title": "task 1",
+      "description": "task description number one",
+      "completed": false,
+      "userId": "5262",
+      "status": "todo",
+      "dueDate": "2025-03-10",
+      "priority": "medium",
+      "createdAt": "2025-03-11T04:27:02.892Z"
     }
   ]
 }

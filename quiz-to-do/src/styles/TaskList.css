@@ -1,0 +1,41 @@
+.task-list {
+  transition: background-color 0.2s ease;
+  padding: 0.5rem;
+}
+
+.task-card {
+  transition: all 0.3s ease;
+  margin-bottom: 1rem !important;
+}
+
+.task-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.1) !important;
+}
+
+.sortable-drag {
+  opacity: 0.5;
+  transform: scale(1.02);
+}
+
+.sortable-chosen {
+  background-color: #fff;
+  box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,.15) !important;
+}
+
+.cursor-move {
+  cursor: move;
+  transition: opacity 0.2s ease;
+}
+
+.cursor-move:hover {
+  opacity: 0.7;
+}
+
+.hover-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 0.5rem 2rem rgba(0,0,0,.12) !important;
+}
