@@ -1,87 +1,107 @@
-async function GetTasks(userId) {
+// Obtener todas las tareas
+async function obtenerTareas(idUsuario) {
     try {
-        const response = await fetch(`http://localhost:3001/tareas?userId=${userId}`, {
+        const respuesta = await fetch(`http://localhost:3001/tareas?userId=${idUsuario}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
 
-        if (!response.ok) {
-            throw new Error('Error fetching tasks');
+        if (!respuesta.ok) {
+            throw new Error('Error al obtener las tareas');
         }
 
-        return await response.json();
+        return await respuesta.json();
     } catch (error) {
-        console.error('Error fetching tasks:', error);
+        console.error('Error al obtener tareas:', error);
         throw error;
     }
 }
 
-async function PostTask(title, description, completed, userId) {
+// Crear nueva tarea
+async function crearTarea(titulo, descripcion, completada, idUsuario) {
     try {
-        const taskData = { title, description, completed, userId };
+        const datosTarea = { 
+            titulo, 
+            descripcion, 
+            completada, 
+            idUsuario 
+        };
 
-        const response = await fetch("http://localhost:3001/tareas", {
+        const respuesta = await fetch("http://localhost:3001/tareas", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(taskData)
+            body: JSON.stringify(datosTarea)
         });
 
-        if (!response.ok) {
-            throw new Error('Error posting task');
+        if (!respuesta.ok) {
+            throw new Error('Error al crear la tarea');
         }
 
-        return await response.json();
+        return await respuesta.json();
     } catch (error) {
-        console.error('Error posting task:', error);
+        console.error('Error al crear tarea:', error);
         throw error;
     }
 }
 
-async function UpdateTask(title, description, completed, id, userId) {
+// Actualizar tarea existente
+async function actualizarTarea(titulo, descripcion, completada, id, idUsuario) {
     try {
-        const taskData = { title, description, completed, id, userId };
+        const datosTarea = { 
+            titulo, 
+            descripcion, 
+            completada, 
+            id, 
+            idUsuario 
+        };
 
-        const response = await fetch(`http://localhost:3001/tareas/${id}`, {
+        const respuesta = await fetch(`http://localhost:3001/tareas/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(taskData)
+            body: JSON.stringify(datosTarea)
         });
 
-        if (!response.ok) {
-            throw new Error(`Error updating task with id ${id}`);
+        if (!respuesta.ok) {
+            throw new Error(`Error al actualizar la tarea con id ${id}`);
         }
 
-        return await response.json();
+        return await respuesta.json();
     } catch (error) {
-        console.error('Error updating task:', error);
+        console.error('Error al actualizar tarea:', error);
         throw error;
     }
 }
 
-async function DeleteTask(id, userId) {
+// Eliminar tarea
+async function eliminarTarea(id, idUsuario) {
     try {
-        const response = await fetch(`http://localhost:3001/tareas/${id}?userId=${userId}`, {
+        const respuesta = await fetch(`http://localhost:3001/tareas/${id}?userId=${idUsuario}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
 
-        if (!response.ok) {
-            throw new Error(`Error deleting task with id ${id}`);
+        if (!respuesta.ok) {
+            throw new Error(`Error al eliminar la tarea con id ${id}`);
         }
 
-        return { message: `Task with id ${id} deleted successfully` };
+        return { mensaje: `Tarea con id ${id} eliminada correctamente` };
     } catch (error) {
-        console.error('Error deleting task:', error);
+        console.error('Error al eliminar tarea:', error);
         throw error;
     }
 }
 
-export default { GetTasks, PostTask, UpdateTask, DeleteTask };
+export default { 
+    obtenerTareas, 
+    crearTarea, 
+    actualizarTarea, 
+    eliminarTarea 
+};
