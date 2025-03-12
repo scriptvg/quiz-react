@@ -1,0 +1,110 @@
+.formulario-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  margin: 2rem auto;
+  border-radius: 16px;
+  width: 450px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formulario-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.form-control, .form-select {
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #344767;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #fff;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+  outline: none;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #344767;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+textarea.form-control {
+  min-height: 120px;
+}
+
+.form-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.prioridad-baja {
+  color: #0dcaf0 !important;
+  background-color: #f0fdff;
+}
+
+.prioridad-media {
+  color: #ffc107 !important;
+  background-color: #fffbeb;
+}
+
+.prioridad-alta {
+  color: #dc3545 !important;
+  background-color: #fff5f5;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Icons styling */
+.me-2 {
+  color: #6c757d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .formulario-container {
+    width: 90%;
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+  
+  .btn-primary {
+    padding: 0.875rem 1.5rem;
+    width: 100%;
+  }
+  
+  .form-control, .form-select {
+    padding: 0.875rem;
+  }
+}

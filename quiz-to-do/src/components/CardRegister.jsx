@@ -9,112 +9,212 @@ import "../styles/CardRegister.css"
 
 // Componente de registro de usuarios
 function CardRegister() {
-  // Estados para manejar los campos del formulario
   const [nombre, setNombre] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  
-  // Estados para controlar la visibilidad de las contraseñas
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [errors, setErrors] = useState({
+    nombre: '',
+    email: '',
+    password: '',
+    passwordConfirm: ''
+  })
 
-  // Manejadores de cambios en los campos del formulario
-  const nameUser = (e) => setNombre(e.target.value)
-  const emailUser = (e) => setEmail(e.target.value)
-  const passwordUser = (e) => setPassword(e.target.value)
-  const passwordConfirmUser = (e) => setPasswordConfirm(e.target.value)
+  const validateForm = () => {
+    const newErrors = {
+      nombre: '',
+      email: '',
+      password: '',
+      passwordConfirm: ''
+    }
+    let isValid = true
 
-  // Funciones para mostrar/ocultar contraseñas
-  const togglePassword = () => setShowPassword(!showPassword)
-  const toggleConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword)  
-
-  // Función para manejar el registro de usuarios
-  const register = async (e) => {
-    // Validación de contraseñas coincidentes
-    if (password !== passwordConfirm) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Las contraseñas no coinciden'
-      });
-      return;
+    if (!nombre.trim()) {
+      newErrors.nombre = 'Name is required'
+      isValid = false
     }
 
-    // Validación de campos requeridos
-    if (!nombre || !email || !password || !passwordConfirm) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Todos los campos son obligatorios'
-      });
-      return;
+    if (!email) {
+      newErrors.email = 'Email is required'
+      isValid = false
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'Please enter a valid email'
+      isValid = false
     }
+
+    if (!password) {
+      newErrors.password = 'Password is required'
+      isValid = false
+    } else if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters'
+      isValid = false
+    }
+
+    if (!passwordConfirm) {
+      newErrors.passwordConfirm = 'Please confirm your password'
+      isValid = false
+    } else if (password !== passwordConfirm) {
+      newErrors.passwordConfirm = 'Passwords do not match'
+      isValid = false
+    }
+
+    setErrors(newErrors)
+    return isValid
+  }
+
+  const handleInputChange = (field, value) => {
+    switch (field) {
+      case 'nombre':
+        setNombre(value)
+        if (errors.nombre) setErrors({ ...errors, nombre: '' })
+        break
+      case 'email':
+        setEmail(value)
+        if (errors.email) setErrors({ ...errors, email: '' })
+        break
+      case 'password':
+        setPassword(value)
+        if (errors.password) setErrors({ ...errors, password: '' })
+        break
+      case 'passwordConfirm':
+        setPasswordConfirm(value)
+        if (errors.passwordConfirm) setErrors({ ...errors, passwordConfirm: '' })
+        break
+      default:
+        break
+    }
+  }
+
+  const register = async () => {
+    if (!validateForm()) return
 
     try {
-      // Intento de registro del usuario
-      await usersCalls.PostUsers(nombre.trim(), email.trim(), password.trim());
-      Swal.fire({
+      setIsLoading(true)
+      await usersCalls.PostUsers(nombre.trim(), email.trim(), password.trim())
+      
+      await Swal.fire({
         icon: 'success',
-        title: 'Éxito',
-        text: 'Usuario registrado correctamente'
-      });
-      // Aquí podrías agregar redirección al login
-    } catch(err) {
-      console.log(err);
+        title: 'Success',
+        text: 'User registered successfully'
+      })
+      
+      // Reset form
+      setNombre('')
+      setEmail('')
+      setPassword('')
+      setPasswordConfirm('')
+      
+    } catch (error) {
+      console.error('Registration error:', error)
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'Error al registrar el usuario'
-      });
+        text: 'Error registering user'
+      })
+    } finally {
+      setIsLoading(false)
     }
-  } 
-
-  
+  }
 
   return (
     <div className="register-container">
       <div className="formRegister shadow">
-        <h1 className="text-center mb-4">Crear Cuenta</h1>
+        <h1 className="text-center mb-4">Create Account</h1>
 
-          {/* Campo de nombre */}
-          <div className="mb-4">
-            <label htmlFor="nombre" className="form-label">Nombre</label>
-            <input value={nombre} onChange={nameUser} type="text" className="form-control form-control-lg" id="nombre" placeholder="Ingrese su nombre"/>
+        <div className="mb-4">
+          <label htmlFor="nombre" className="form-label">Name</label>
+          <input 
+            value={nombre} 
+            onChange={(e) => handleInputChange('nombre', e.target.value)} 
+            type="text" 
+            className={`form-control form-control-lg ${errors.nombre ? 'is-invalid' : ''}`}
+            id="nombre" 
+            placeholder="Enter your name"
+            disabled={isLoading}
+          />
+          {errors.nombre && <div className="invalid-feedback">{errors.nombre}</div>}
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="email" className="form-label">Email</label>
+          <input 
+            value={email} 
+            onChange={(e) => handleInputChange('email', e.target.value)} 
+            type="email" 
+            className={`form-control form-control-lg ${errors.email ? 'is-invalid' : ''}`}
+            id="email" 
+            placeholder="name@example.com"
+            disabled={isLoading}
+          />
+          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="password" className="form-label">Password</label>
+          <div className="input-group input-group-lg">
+            <input 
+              value={password} 
+              onChange={(e) => handleInputChange('password', e.target.value)} 
+              type={showPassword ? "text" : "password"} 
+              className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+              id="password" 
+              placeholder="••••••••"
+              disabled={isLoading}
+            />
+            <button 
+              className="btn btn-outline-secondary d-flex align-items-center justify-content-center" 
+              type="button" 
+              onClick={() => setShowPassword(!showPassword)}
+              disabled={isLoading}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
           </div>
+        </div>
 
-          {/* Campo de email */}
-          <div className="mb-4">
-            <label htmlFor="email" className="form-label">Email</label>
-            <input value={email} onChange={emailUser} type="email" className="form-control form-control-lg" id="email" placeholder="nombre@ejemplo.com"/>
+        <div className="mb-4">
+          <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+          <div className="input-group input-group-lg">
+            <input 
+              value={passwordConfirm} 
+              onChange={(e) => handleInputChange('passwordConfirm', e.target.value)} 
+              type={showConfirmPassword ? "text" : "password"} 
+              className={`form-control ${errors.passwordConfirm ? 'is-invalid' : ''}`}
+              id="confirmPassword" 
+              placeholder="••••••••"
+              disabled={isLoading}
+            />
+            <button 
+              className="btn btn-outline-secondary d-flex align-items-center justify-content-center" 
+              type="button" 
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              disabled={isLoading}
+            >
+              {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+            {errors.passwordConfirm && <div className="invalid-feedback">{errors.passwordConfirm}</div>}
           </div>
+        </div>
 
-          {/* Campo de contraseña */}
-          <div className="mb-4">
-            <label htmlFor="password" className="form-label">Contraseña</label>
-            <div className="input-group input-group-lg">
-              <input value={password} onChange={passwordUser} type={showPassword ? "text" : "password"} className="form-control" id="password" placeholder="••••••••"/>
-              <button className="btn btn-outline-secondary d-flex align-items-center justify-content-center" type="button" onClick={togglePassword}>
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            </div>
-          </div>
-
-          {/* Campo de confirmación de contraseña */}
-          <div className="mb-4">
-            <label htmlFor="confirmPassword" className="form-label">Confirmar Contraseña</label>
-            <div className="input-group input-group-lg">
-              <input value={passwordConfirm} onChange={passwordConfirmUser} type={showConfirmPassword ? "text" : "password"} className="form-control" id="confirmPassword" placeholder="••••••••"/>
-              <button className="btn btn-outline-secondary d-flex align-items-center justify-content-center" type="button" onClick={toggleConfirmPassword}>
-                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            </div>
-          </div>
-
-          {/* Botón de registro */}
-          <button type="button" onClick={register} className="btn btn-primary btn-lg w-100">
-            Registrarse
-          </button>
+        <button 
+          type="button" 
+          onClick={register} 
+          className="btn btn-primary btn-lg w-100"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Loading...
+            </>
+          ) : (
+            'Register'
+          )}
+        </button>
       </div>
     </div>
   )

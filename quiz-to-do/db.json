@@ -1,11 +1,46 @@
 {
-  "tareas": [],
+  "tareas": [
+    {
+      "titulo": "asscsa",
+      "descripcion": "asdasdasd",
+      "completada": false,
+      "id": "e34b",
+      "idUsuario": "2da2"
+    },
+    {
+      "titulo": "adadwadwa",
+      "descripcion": "adawdadawdwad",
+      "completada": true,
+      "id": "4108",
+      "idUsuario": "2da2"
+    },
+    {
+      "titulo": "adadwadawdaw",
+      "descripcion": "dadawdawdawd",
+      "completada": true,
+      "id": "74e3",
+      "idUsuario": "2da2"
+    },
+    {
+      "titulo": "Tarea 1ghr",
+      "descripcion": "thbgdd",
+      "completada": true,
+      "id": "b1ad",
+      "idUsuario": "2da2"
+    }
+  ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Allan",
       "email": "admin",
       "password": "admin"
+    },
+    {
+      "id": "2da2",
+      "nombre": "allan",
+      "email": "admin@gmail.com",
+      "password": "lsdisfun34"
     }
   ]
 }

@@ -1,0 +1,103 @@
+.lista-tareas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    position: fixed;
+    top: 100px;
+    bottom: 50px;
+    left: 50px;
+    right: 0;
+
+}
+
+.lista-tareas .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 0;
+}
+
+.lista-tareas .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.lista-tareas .card-body {
+    padding: 1.5rem;
+}
+
+.lista-tareas .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.lista-tareas .card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.lista-tareas .card-footer {
+    background-color: #f8f9fa;
+    border-top: none;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lista-tareas .card-footer .progress {
+    margin-bottom: 0;
+}
+
+.lista-tareas .card-footer .progress-bar {
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lista-tareas .card-footer .progress-bar.completed {
+    background-color: #198754;
+}
+
+.date-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    background-color: #f8f9fa;
+    color: #495057;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    margin-right: 0.5rem;
+}
+
+.date-chip-overdue {
+    background-color: #fff5f5;
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.date-chip-completed {
+    background-color: #f0f9f0;
+    color: #198754;
+    border: 1px solid rgba(25, 135, 84, 0.2);
+    text-decoration: line-through;
+}
+
+.date-chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .lista-tareas {
+        padding: 0 0.5rem;
+    }
+    
+    .lista-tareas .card {
+        margin-bottom: 0.5rem;
+    }
+}
