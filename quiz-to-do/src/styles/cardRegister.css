@@ -9,10 +9,7 @@
 .formRegister {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 8px;
@@ -24,7 +21,7 @@
 }
 
 .formRegister:hover {
-  transform: translate(-50%, -55%);
+  transform: translateY(-5px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 

@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { UserCircle, Menu, X } from 'lucide-react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { UserCircle, Menu, X, LogOut } from 'lucide-react'
 import reactLogo from '../../assets/react.svg'
 import "../../styles/NavBar.css"
+import { useAuth } from '../../services/Auth'
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
+  const { user, logout } = useAuth()
 
   const isActive = (path) => location.pathname === path
 
@@ -15,8 +18,8 @@ function NavBar() {
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div className="container py-2">
           <Link className="navbar-brand fw-bold d-flex align-items-center gap-2" to="/">
-            <img src={reactLogo} alt="To Do App" height="30" />
-            To Do App
+            <img src={reactLogo} alt="To Do App" height="30" className="logo-spin" />
+            Quiz App
           </Link>
           
           <button 
@@ -25,11 +28,13 @@ function NavBar() {
             data-bs-toggle="collapse" 
             data-bs-target="#navbarNav"
             onClick={() => setIsOpen(!isOpen)}
+            aria-expanded={isOpen}
+            aria-label="Toggle navigation"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item px-2">
                 <Link 
@@ -50,19 +55,34 @@ function NavBar() {
             </ul>
             
             <div className="d-flex align-items-center gap-3">
-              <Link 
-                to="/login" 
-                className={`btn ${isActive('/login') ? 'btn-primary' : 'btn-outline-primary'} px-4`}
-              >
-                Login
-              </Link>
-              <Link 
-                to="/register" 
-                className={`btn ${isActive('/register') ? 'btn-primary' : 'btn-outline-primary'} px-4 d-flex align-items-center gap-2`}
-              >
-                <UserCircle size={20} />
-                Register
-              </Link>
+              {user ? (
+                <button 
+                  onClick={() => {
+                    logout();
+                    navigate('/login');
+                  }} 
+                  className="btn btn-outline-danger px-4 d-flex align-items-center gap-2"
+                >
+                  <LogOut size={20} />
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link 
+                    to="/login" 
+                    className={`btn ${isActive('/login') ? 'btn-primary' : 'btn-outline-primary'} px-4`}
+                  >
+                    Login
+                  </Link>
+                  <Link 
+                    to="/register" 
+                    className={`btn ${isActive('/register') ? 'btn-primary' : 'btn-outline-primary'} px-4 d-flex align-items-center gap-2`}
+                  >
+                    <UserCircle size={20} />
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { PlusCircle, Calendar, Flag, Type, AlignLeft, Save } from 'lucide-react';
+import CategoriaSelector from './CategoriaSelector';
 import Swal from 'sweetalert2';
 import "../styles/FormularioTarea.css";
 
 function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
-  const mostrarAlerta = (icon, title) => {
-    Swal.fire({
+  const mostrarAlerta = (icon, title, showConfirmButton = false) => {
+    Swal.mixin({
       icon,
       title,
       toast: true,
       position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true
-    });
+      showConfirmButton,
+      timer: showConfirmButton ? undefined : 3000,
+      timerProgressBar: !showConfirmButton
+    }).fire();
   };
 
   const [nuevaTarea, setNuevaTarea] = useState({
     titulo: '',
     descripcion: '',
     fecha: '',
-    prioridad: 'baja'
+    prioridad: 'baja',
+    categories: []
   });
 
   useEffect(() => {
@@ -31,6 +33,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
         descripcion: tareaEditando.descripcion || '',
         fecha: tareaEditando.fecha || '',
         prioridad: tareaEditando.prioridad || 'baja',
+        categories: tareaEditando.categories || [],
         id: tareaEditando.id,
         completada: tareaEditando.completada
       });
@@ -66,15 +69,17 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
       onActualizarTarea({
         ...nuevaTarea,
         fecha: fechaActual,
-        id: tareaEditando.id
+        id: tareaEditando.id,
+        categories: nuevaTarea.categories
       });
-      mostrarAlerta('success', 'Tarea actualizada correctamente');
+      mostrarAlerta('success', 'Tarea actualizada correctamente', true);
     } else {
       onAgregarTarea({
         ...nuevaTarea,
         fecha: fechaActual,
         id: Date.now(),
-        completada: false
+        completada: false,
+        categories: nuevaTarea.categories
       });
       mostrarAlerta('success', 'Tarea agregada correctamente');
     }
@@ -83,7 +88,8 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
       titulo: '', 
       descripcion: '', 
       fecha: '',
-      prioridad: 'baja'
+      prioridad: 'baja',
+      categories: []
     });
   };
 
@@ -92,7 +98,8 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
       titulo: '', 
       descripcion: '', 
       fecha: '',
-      prioridad: 'baja'
+      prioridad: 'baja',
+      categories: []
     });
     onActualizarTarea(null);
     mostrarAlerta('info', 'Edición cancelada');
@@ -147,6 +154,11 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
         />
         <small className="text-muted">Si no selecciona fecha y hora, se usará la actual</small>
       </div>
+
+      <CategoriaSelector
+        selectedCategories={nuevaTarea.categories}
+        onChange={(categories) => setNuevaTarea(prev => ({ ...prev, categories }))}
+      />
 
       <div className="mb-4">
         <label className="d-flex align-items-center">

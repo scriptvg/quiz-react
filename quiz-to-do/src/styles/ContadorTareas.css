@@ -3,8 +3,8 @@
 .contador-container {
   width: 300px;
   position: fixed;
-  top: 80px;
-  left: 20px;
+  top: 100px;
+  left: 1580px;
   padding: 1.25rem;
   background-color: #ffffff;
   border-radius: 12px;
@@ -14,7 +14,7 @@
 }
 
 .contador-container:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 

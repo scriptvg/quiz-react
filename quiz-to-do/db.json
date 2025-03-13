@@ -1,32 +1,51 @@
 {
+  "categories": [
+    {
+      "id": "1",
+      "name": "Personal",
+      "color": "#FF5733"
+    },
+    {
+      "id": "2",
+      "name": "Work",
+      "color": "#33FF57"
+    },
+    {
+      "id": "3",
+      "name": "Study",
+      "color": "#3357FF"
+    },
+    {
+      "id": "4",
+      "name": "Shopping",
+      "color": "#FF33F5"
+    }
+  ],
   "tareas": [
     {
-      "titulo": "asscsa",
-      "descripcion": "asdasdasd",
+      "titulo": "Hola ",
+      "descripcion": "Steven",
       "completada": false,
-      "id": "e34b",
-      "idUsuario": "2da2"
+      "id": "b7e4",
+      "idUsuario": "ab2a",
+      "fecha": "2025-03-12T17:55",
+      "prioridad": "baja",
+      "categories": [
+        1,
+        2,
+        3,
+        "2"
+      ]
     },
     {
-      "titulo": "adadwadwa",
-      "descripcion": "adawdadawdwad",
-      "completada": true,
-      "id": "4108",
-      "idUsuario": "2da2"
-    },
-    {
-      "titulo": "adadwadawdaw",
-      "descripcion": "dadawdawdawd",
-      "completada": true,
-      "id": "74e3",
-      "idUsuario": "2da2"
-    },
-    {
-      "titulo": "Tarea 1ghr",
-      "descripcion": "thbgdd",
-      "completada": true,
-      "id": "b1ad",
-      "idUsuario": "2da2"
+      "titulo": "añdwkañlwdk",
+      "descripcion": "alwdkñalwdkwa",
+      "completada": false,
+      "id": "f1be",
+      "idUsuario": "ab2a",
+      "fecha": "2025-03-12T19:19",
+      "prioridad": "baja",
+      "categories": []
     }
   ],
   "users": [
@@ -41,6 +60,12 @@
       "nombre": "allan",
       "email": "admin@gmail.com",
       "password": "lsdisfun34"
+    },
+    {
+      "id": "ab2a",
+      "nombre": "Steven",
+      "email": "steven@fwd.com",
+      "password": "123456"
     }
   ]
 }

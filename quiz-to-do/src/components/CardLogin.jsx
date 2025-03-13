@@ -27,11 +27,16 @@ function CardLogin() {
         const datos = await usersCalls.GetUsers();
         setUsers(datos);
       } catch (error) {
-        Swal.fire({
+        Swal.mixin({
           icon: 'error',
           title: 'Error',
-          text: 'Error loading users data'
-        });
+          text: 'Error loading users data',
+          toast: true,
+          position: 'top-end', // Change the position here
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        }).fire();
       } finally {
         setIsLoading(false);
       }
@@ -83,11 +88,16 @@ function CardLogin() {
       const user = users.find(user => user.email === emailUser && user.password === passwordUser);
 
       if (!user) {
-        Swal.fire({
+        Swal.mixin({
           icon: 'error',
           title: 'Error',
-          text: 'Invalid email or password'
-        });
+          text: 'Invalid email or password',
+          toast: true,
+          position: 'top-end', // Change the position here
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        }).fire();
         return;
       }
 
@@ -101,19 +111,29 @@ function CardLogin() {
 
       login(userData);
       
-      await Swal.fire({
+      await Swal.mixin({
         icon: 'success',
         title: 'Success',
-        text: 'Logged in successfully'
-      });
+        text: 'Logged in successfully',
+        toast: true,
+        position: 'top-end', // Change the position here
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true
+      }).fire();
 
       navigate("/");
     } catch (error) {
-      Swal.fire({
+      Swal.mixin({
         icon: 'error',
         title: 'Error',
-        text: 'An error occurred during login'
-      });
+        text: 'An error occurred during login',
+        toast: true,
+        position: 'top-end', // Change the position here
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      }).fire();
     } finally {
       setIsLoading(false);
     }

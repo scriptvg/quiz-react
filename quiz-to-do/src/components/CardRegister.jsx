@@ -95,11 +95,16 @@ function CardRegister() {
       setIsLoading(true)
       await usersCalls.PostUsers(nombre.trim(), email.trim(), password.trim())
       
-      await Swal.fire({
+      await Swal.mixin({
         icon: 'success',
         title: 'Success',
-        text: 'User registered successfully'
-      })
+        text: 'User registered successfully',
+        toast: true,
+        position: 'top-end', // Change the position here
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      }).fire();
       
       // Reset form
       setNombre('')
@@ -109,11 +114,16 @@ function CardRegister() {
       
     } catch (error) {
       console.error('Registration error:', error)
-      Swal.fire({
+      Swal.mixin({
         icon: 'error',
         title: 'Error',
-        text: 'Error registering user'
-      })
+        text: 'Error registering user',
+        toast: true,
+        position: 'top-end', // Change the position here
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      }).fire();
     } finally {
       setIsLoading(false)
     }

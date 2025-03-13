@@ -1,7 +1,7 @@
 // Obtener todas las tareas
 async function obtenerTareas(idUsuario) {
     try {
-        const respuesta = await fetch(`http://localhost:3001/tareas?userId=${idUsuario}`, {
+        const respuesta = await fetch(`http://localhost:3001/tareas?idUsuario=${idUsuario}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ async function obtenerTareas(idUsuario) {
 }
 
 // Crear nueva tarea
-async function crearTarea(titulo, descripcion, completada, idUsuario, fecha, prioridad) {
+async function crearTarea(titulo, descripcion, completada, idUsuario, fecha, prioridad, categories = []) {
     try {
         const datosTarea = { 
             titulo, 
@@ -28,7 +28,8 @@ async function crearTarea(titulo, descripcion, completada, idUsuario, fecha, pri
             completada, 
             idUsuario,
             fecha,
-            prioridad
+            prioridad,
+            categories
         };
 
         const respuesta = await fetch("http://localhost:3001/tareas", {
@@ -51,7 +52,7 @@ async function crearTarea(titulo, descripcion, completada, idUsuario, fecha, pri
 }
 
 // Actualizar tarea existente
-async function actualizarTarea(titulo, descripcion, completada, id, idUsuario, fecha, prioridad) {
+async function actualizarTarea(titulo, descripcion, completada, id, idUsuario, fecha, prioridad, categories = []) {
     try {
         const datosTarea = { 
             titulo, 
@@ -60,7 +61,8 @@ async function actualizarTarea(titulo, descripcion, completada, id, idUsuario, f
             id, 
             idUsuario,
             fecha,
-            prioridad
+            prioridad,
+            categories
         };
 
         const respuesta = await fetch(`http://localhost:3001/tareas/${id}`, {
