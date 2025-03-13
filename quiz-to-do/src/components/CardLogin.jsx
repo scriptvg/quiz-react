@@ -20,6 +20,7 @@ function CardLogin() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({ email: "", password: "" });
 
+  // Efecto para obtener los datos de los usuarios al cargar el componente
   useEffect(() => {
     async function fetchDataUsers() {
       try {
@@ -27,12 +28,13 @@ function CardLogin() {
         const datos = await usersCalls.GetUsers();
         setUsers(datos);
       } catch (error) {
+        // Mostrar alerta de error si falla la carga de datos
         Swal.mixin({
           icon: 'error',
           title: 'Error',
           text: 'Error loading users data',
           toast: true,
-          position: 'top-end', // Change the position here
+          position: 'top-end', // Cambiar la posición aquí
           showConfirmButton: false,
           timer: 3000,
           timerProgressBar: true
@@ -45,6 +47,7 @@ function CardLogin() {
     fetchDataUsers();
   }, []);
 
+  // Función para validar el formulario
   function validateForm() {
     const newErrors = { email: "", password: "" };
     let isValid = true;
@@ -66,6 +69,7 @@ function CardLogin() {
     return isValid;
   }
 
+  // Función para manejar el cambio en el campo de email
   function email(event) {
     if (event && event.target) {
       setEmailUser(event.target.value);
@@ -73,6 +77,7 @@ function CardLogin() {
     }
   }
 
+  // Función para manejar el cambio en el campo de contraseña
   function password(event) {
     if (event && event.target) {
       setPasswordUser(event.target.value);
@@ -80,6 +85,7 @@ function CardLogin() {
     }
   }
 
+  // Función para manejar el inicio de sesión
   async function ingresar() {
     if (!validateForm()) return;
 
@@ -88,12 +94,13 @@ function CardLogin() {
       const user = users.find(user => user.email === emailUser && user.password === passwordUser);
 
       if (!user) {
+        // Mostrar alerta de error si el email o la contraseña son inválidos
         Swal.mixin({
           icon: 'error',
           title: 'Error',
           text: 'Invalid email or password',
           toast: true,
-          position: 'top-end', // Change the position here
+          position: 'top-end', // Cambiar la posición aquí
           showConfirmButton: false,
           timer: 3000,
           timerProgressBar: true
@@ -111,12 +118,13 @@ function CardLogin() {
 
       login(userData);
       
+      // Mostrar alerta de éxito al iniciar sesión correctamente
       await Swal.mixin({
         icon: 'success',
         title: 'Success',
         text: 'Logged in successfully',
         toast: true,
-        position: 'top-end', // Change the position here
+        position: 'top-end', // Cambiar la posición aquí
         showConfirmButton: false,
         timer: 1500,
         timerProgressBar: true
@@ -124,12 +132,13 @@ function CardLogin() {
 
       navigate("/");
     } catch (error) {
+      // Mostrar alerta de error si ocurre un error durante el inicio de sesión
       Swal.mixin({
         icon: 'error',
         title: 'Error',
         text: 'An error occurred during login',
         toast: true,
-        position: 'top-end', // Change the position here
+        position: 'top-end', // Cambiar la posición aquí
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
@@ -139,6 +148,7 @@ function CardLogin() {
     }
   }
 
+  // Función para alternar la visibilidad de la contraseña
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

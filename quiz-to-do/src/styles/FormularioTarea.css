@@ -1,119 +1,132 @@
+/* Contenedor del formulario */
 .formulario-container {
-  background-color: #ffffff;
-  padding: 2rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e9ecef;
-  margin: 2rem auto;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 450px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff; /* Color de fondo blanco */
+  padding: 2rem; /* Relleno de 2rem */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* Sombra de caja */
+  border: 1px solid #e9ecef; /* Borde sólido */
+  margin: 2rem auto; /* Margen automático */
+  border-radius: 16px; /* Bordes redondeados */
+  width: 100%; /* Ancho completo */
+  max-width: 450px; /* Ancho máximo */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición */
 }
 
+/* Efecto hover en el contenedor del formulario */
 .formulario-container:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px); /* Mover hacia arriba */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); /* Sombra de caja */
 }
 
+/* Estilos para controles de formulario y selectores */
 .form-control, .form-select {
-  background-color: #f8f9fa;
-  border: 2px solid #e9ecef;
-  border-radius: 10px;
-  padding: 1rem;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  color: #344767;
+  background-color: #f8f9fa; /* Color de fondo */
+  border: 2px solid #e9ecef; /* Borde sólido */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 1rem; /* Relleno */
+  font-size: 1rem; /* Tamaño de fuente */
+  transition: all 0.3s ease; /* Transición */
+  color: #344767; /* Color de texto */
 }
 
+/* Estilos para controles de formulario y selectores en foco */
 .form-control:focus, .form-select:focus {
-  background-color: #fff;
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
-  outline: none;
+  background-color: #fff; /* Color de fondo */
+  border-color: #0d6efd; /* Color del borde */
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15); /* Sombra de caja */
+  outline: none; /* Sin contorno */
 }
 
+/* Ajustes responsivos para pantallas pequeñas */
 @media (max-width: 768px) {
   .formulario-container {
-    margin: 1rem auto;
-    padding: 1.5rem;
+    margin: 1rem auto; /* Margen automático */
+    padding: 1.5rem; /* Relleno */
   }
 }
 
+/* Estilos para etiquetas de formulario */
 .form-label {
-  font-weight: 600;
-  color: #344767;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+  font-weight: 600; /* Peso de fuente */
+  color: #344767; /* Color de texto */
+  margin-bottom: 0.5rem; /* Margen inferior */
+  font-size: 0.95rem; /* Tamaño de fuente */
 }
 
+/* Estilos para textarea */
 textarea.form-control {
-  min-height: 120px;
+  min-height: 120px; /* Altura mínima */
 }
 
+/* Estilos para selectores */
 .form-select {
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 16px 12px;
+  cursor: pointer; /* Cursor de puntero */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); /* Imagen de fondo */
+  background-repeat: no-repeat; /* Sin repetición */
+  background-position: right 0.75rem center; /* Posición de fondo */
+  background-size: 16px 12px; /* Tamaño de fondo */
 }
 
+/* Estilos para botones primarios */
 .btn-primary {
-  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
-  border: none;
-  padding: 1rem 2rem;
-  font-weight: 600;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7); /* Degradado de fondo */
+  border: none; /* Sin borde */
+  padding: 1rem 2rem; /* Relleno */
+  font-weight: 600; /* Peso de fuente */
+  border-radius: 10px; /* Bordes redondeados */
+  transition: all 0.3s ease; /* Transición */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  letter-spacing: 0.5px; /* Espaciado entre letras */
 }
 
+/* Efecto hover en botones primarios */
 .btn-primary:hover {
-  background-color: #0b5ed7;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+  background-color: #0b5ed7; /* Color de fondo */
+  transform: translateY(-2px); /* Mover hacia arriba */
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3); /* Sombra de caja */
 }
 
+/* Estilos para prioridad baja */
 .prioridad-baja {
-  color: #0dcaf0 !important;
-  background-color: #f0fdff;
+  color: #0dcaf0 !important; /* Color de texto */
+  background-color: #f0fdff; /* Color de fondo */
 }
 
+/* Estilos para prioridad media */
 .prioridad-media {
-  color: #ffc107 !important;
-  background-color: #fffbeb;
+  color: #ffc107 !important; /* Color de texto */
+  background-color: #fffbeb; /* Color de fondo */
 }
 
+/* Estilos para prioridad alta */
 .prioridad-alta {
-  color: #dc3545 !important;
-  background-color: #fff5f5;
+  color: #dc3545 !important; /* Color de texto */
+  background-color: #fff5f5; /* Color de fondo */
 }
 
+/* Estilos para grupos de formulario */
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem; /* Margen inferior */
 }
 
-/* Icons styling */
+/* Estilos para iconos */
 .me-2 {
-  color: #6c757d;
+  color: #6c757d; /* Color de texto */
 }
 
-/* Responsive adjustments */
+/* Ajustes responsivos */
 @media (max-width: 768px) {
   .formulario-container {
-    width: 90%;
-    padding: 1.5rem;
-    margin: 1rem auto;
+    width: 90%; /* Ancho */
+    padding: 1.5rem; /* Relleno */
+    margin: 1rem auto; /* Margen automático */
   }
   
   .btn-primary {
-    padding: 0.875rem 1.5rem;
-    width: 100%;
+    padding: 0.875rem 1.5rem; /* Relleno */
+    width: 100%; /* Ancho completo */
   }
   
   .form-control, .form-select {
-    padding: 0.875rem;
+    padding: 0.875rem; /* Relleno */
   }
 }
-

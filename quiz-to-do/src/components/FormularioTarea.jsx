@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import "../styles/FormularioTarea.css";
 
 function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
+  // Función para mostrar alertas
   const mostrarAlerta = (icon, title, showConfirmButton = false) => {
     Swal.mixin({
       icon,
@@ -18,6 +19,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
     }).fire();
   };
 
+  // Estado inicial de la nueva tarea
   const [nuevaTarea, setNuevaTarea] = useState({
     titulo: '',
     descripcion: '',
@@ -26,6 +28,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
     categories: []
   });
 
+  // Efecto para cargar los datos de la tarea en edición
   useEffect(() => {
     if (tareaEditando) {
       setNuevaTarea({
@@ -40,6 +43,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
     }
   }, [tareaEditando]);
 
+  // Manejar cambios en los inputs
   const manejarCambio = (e) => {
     const { name, value } = e.target;
     setNuevaTarea(prevTarea => ({
@@ -48,6 +52,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
     }));
   };
 
+  // Manejar envío del formulario
   const manejarEnvio = (e) => {
     e.preventDefault();
     if (!nuevaTarea.titulo.trim()) {
@@ -59,7 +64,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
     let fechaActual;
     if (!nuevaTarea.fecha) {
       const now = new Date();
-      // Format date as YYYY-MM-DDThh:mm for datetime-local input
+      // Formatear fecha como YYYY-MM-DDThh:mm para input datetime-local
       fechaActual = now.toISOString().slice(0, 16);
     } else {
       fechaActual = nuevaTarea.fecha;
@@ -84,6 +89,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
       mostrarAlerta('success', 'Tarea agregada correctamente');
     }
     
+    // Resetear el formulario
     setNuevaTarea({ 
       titulo: '', 
       descripcion: '', 
@@ -93,6 +99,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
     });
   };
 
+  // Cancelar edición de la tarea
   const cancelarEdicion = () => {
     setNuevaTarea({ 
       titulo: '', 

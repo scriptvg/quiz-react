@@ -9,6 +9,7 @@ import "../styles/CardRegister.css"
 
 // Componente de registro de usuarios
 function CardRegister() {
+  // Estados para los campos del formulario
   const [nombre, setNombre] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -23,6 +24,7 @@ function CardRegister() {
     passwordConfirm: ''
   })
 
+  // Función para validar el formulario
   const validateForm = () => {
     const newErrors = {
       nombre: '',
@@ -32,11 +34,13 @@ function CardRegister() {
     }
     let isValid = true
 
+    // Validar nombre
     if (!nombre.trim()) {
       newErrors.nombre = 'Name is required'
       isValid = false
     }
 
+    // Validar email
     if (!email) {
       newErrors.email = 'Email is required'
       isValid = false
@@ -45,6 +49,7 @@ function CardRegister() {
       isValid = false
     }
 
+    // Validar contraseña
     if (!password) {
       newErrors.password = 'Password is required'
       isValid = false
@@ -53,6 +58,7 @@ function CardRegister() {
       isValid = false
     }
 
+    // Validar confirmación de contraseña
     if (!passwordConfirm) {
       newErrors.passwordConfirm = 'Please confirm your password'
       isValid = false
@@ -65,7 +71,8 @@ function CardRegister() {
     return isValid
   }
 
-  const handleInputChange = (field, value) => {
+  // Función para manejar cambios en los campos del formulario
+  const manejarCambioInput = (field, value) => {
     switch (field) {
       case 'nombre':
         setNombre(value)
@@ -88,6 +95,7 @@ function CardRegister() {
     }
   }
 
+  // Función para registrar un nuevo usuario
   const register = async () => {
     if (!validateForm()) return
 
@@ -100,13 +108,13 @@ function CardRegister() {
         title: 'Success',
         text: 'User registered successfully',
         toast: true,
-        position: 'top-end', // Change the position here
+        position: 'top-end', // Cambiar la posición aquí
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
       }).fire();
       
-      // Reset form
+      // Resetear formulario
       setNombre('')
       setEmail('')
       setPassword('')
@@ -119,7 +127,7 @@ function CardRegister() {
         title: 'Error',
         text: 'Error registering user',
         toast: true,
-        position: 'top-end', // Change the position here
+        position: 'top-end', // Cambiar la posición aquí
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
@@ -138,7 +146,7 @@ function CardRegister() {
           <label htmlFor="nombre" className="form-label">Name</label>
           <input 
             value={nombre} 
-            onChange={(e) => handleInputChange('nombre', e.target.value)} 
+            onChange={(e) => manejarCambioInput('nombre', e.target.value)} 
             type="text" 
             className={`form-control form-control-lg ${errors.nombre ? 'is-invalid' : ''}`}
             id="nombre" 
@@ -152,7 +160,7 @@ function CardRegister() {
           <label htmlFor="email" className="form-label">Email</label>
           <input 
             value={email} 
-            onChange={(e) => handleInputChange('email', e.target.value)} 
+            onChange={(e) => manejarCambioInput('email', e.target.value)} 
             type="email" 
             className={`form-control form-control-lg ${errors.email ? 'is-invalid' : ''}`}
             id="email" 
@@ -167,7 +175,7 @@ function CardRegister() {
           <div className="input-group input-group-lg">
             <input 
               value={password} 
-              onChange={(e) => handleInputChange('password', e.target.value)} 
+              onChange={(e) => manejarCambioInput('password', e.target.value)} 
               type={showPassword ? "text" : "password"} 
               className={`form-control ${errors.password ? 'is-invalid' : ''}`}
               id="password" 
@@ -191,7 +199,7 @@ function CardRegister() {
           <div className="input-group input-group-lg">
             <input 
               value={passwordConfirm} 
-              onChange={(e) => handleInputChange('passwordConfirm', e.target.value)} 
+              onChange={(e) => manejarCambioInput('passwordConfirm', e.target.value)} 
               type={showConfirmPassword ? "text" : "password"} 
               className={`form-control ${errors.passwordConfirm ? 'is-invalid' : ''}`}
               id="confirmPassword" 

@@ -40,7 +40,7 @@ function Inicio() {
             icon: tipo,
             title: titulo,
             text: texto,
-            position: 'top-end', // Change the position here
+            position: 'top-end', // Cambiar la posición aquí
             showConfirmButton,
             timer: showConfirmButton ? undefined : 3000,
             timerProgressBar: !showConfirmButton,
@@ -168,17 +168,6 @@ function Inicio() {
         <>
             <NavBar />
             <Container className="mt-5 mb-5">
-                {user && (
-                    <div className="welcome-message text-center mb-4">
-                        <h2>¡Bienvenido, {user.nombre}!</h2>
-                        <p className="text-muted">Gestiona tus tareas de manera eficiente</p>
-                    </div>
-                )}
-                {error && (
-                    <div className="alert alert-danger" role="alert">
-                        {error}
-                    </div>
-                )}
                 <Row>
                     <Col md={5}>
                         <FormularioTarea 

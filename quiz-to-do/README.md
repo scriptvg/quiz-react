@@ -1,12 +1,63 @@
-# React + Vite
+# Aplicación de Quiz y Tareas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción
 
-Currently, two official plugins are available:
+La Aplicación de Quiz y Tareas es una aplicación web que combina una plataforma de cuestionarios con una lista de tareas. Los usuarios pueden gestionar sus tareas y realizar cuestionarios para expandir su conocimiento.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características
 
-## Expanding the ESLint configuration
+- Autenticación de usuario (inicio de sesión y registro)
+- Gestión de tareas (agregar, editar, eliminar, completar tareas)
+- Gestión de categorías para tareas
+- Plataforma de cuestionarios
+- Diseño responsivo
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tecnologías Utilizadas
+
+- React
+- React Router
+- Bootstrap
+- SweetAlert2
+- JSON Server (para backend simulado)
+- Vite (para desarrollo y compilación)
+
+## Instrucciones de Configuración
+
+1. Clona el repositorio:
+    ```sh
+    git clone https://github.com/your-username/quiz-to-do.git
+    cd quiz-to-do
+    ```
+
+2. Instala las dependencias:
+    ```sh
+    npm install
+    ```
+
+3. Inicia el JSON Server:
+    ```sh
+    json-server --watch db.json --port 3001
+    ```
+
+4. Inicia el servidor de desarrollo:
+    ```sh
+    npm run dev
+    ```
+
+5. Abre tu navegador y navega a `http://localhost:5173`.
+
+## Uso
+
+- Registra una nueva cuenta o inicia sesión con una cuenta existente.
+- Agrega, edita, elimina y completa tareas.
+- Asigna categorías a las tareas.
+- Realiza cuestionarios para probar tu conocimiento.
+
+## Estructura del Proyecto
+
+- `src/components`: Contiene componentes de React.
+- `src/pages`: Contiene componentes de página.
+- `src/services`: Contiene archivos de servicio para llamadas API.
+- `src/styles`: Contiene archivos CSS para el estilo.
+- `src/routes`: Contiene la configuración de rutas.
+- `db.json`: Datos simulados del backend.

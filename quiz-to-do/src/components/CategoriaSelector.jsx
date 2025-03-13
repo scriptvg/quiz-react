@@ -5,6 +5,7 @@ import { Badge } from 'react-bootstrap';
 function CategoriaSelector({ selectedCategories = [], onChange }) {
   const [categories, setCategories] = useState([]);
 
+  // Efecto para cargar las categorías al montar el componente
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -20,6 +21,7 @@ function CategoriaSelector({ selectedCategories = [], onChange }) {
     fetchCategories();
   }, []);
 
+  // Maneja la selección y deselección de categorías
   const handleCategoryToggle = (categoryId) => {
     const newSelection = selectedCategories.includes(categoryId)
       ? selectedCategories.filter(id => id !== categoryId)

@@ -23,38 +23,29 @@
   ],
   "tareas": [
     {
-      "titulo": "Hola ",
-      "descripcion": "Steven",
+      "id": "5ca3",
+      "titulo": "allan",
+      "descripcion": "",
       "completada": false,
-      "id": "b7e4",
-      "idUsuario": "ab2a",
-      "fecha": "2025-03-12T17:55",
-      "prioridad": "baja",
-      "categories": [
-        1,
-        2,
-        3,
-        "2"
-      ]
-    },
-    {
-      "titulo": "añdwkañlwdk",
-      "descripcion": "alwdkñalwdkwa",
-      "completada": false,
-      "id": "f1be",
-      "idUsuario": "ab2a",
-      "fecha": "2025-03-12T19:19",
+      "idUsuario": "2da2",
+      "fecha": "2025-03-13T14:16",
       "prioridad": "baja",
       "categories": []
+    },
+    {
+      "titulo": "Tarea 1",
+      "descripcion": "Descripción de la tarea 1adadw",
+      "completada": false,
+      "id": "8200",
+      "idUsuario": "ab2a",
+      "fecha": "2025-03-13T17:41",
+      "prioridad": "baja",
+      "categories": [
+        "2"
+      ]
     }
   ],
   "users": [
-    {
-      "id": "1",
-      "name": "Allan",
-      "email": "admin",
-      "password": "admin"
-    },
     {
       "id": "2da2",
       "nombre": "allan",
